@@ -1,6 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { LoggingService } from '../logging.services';
 import { AccountsService } from '../account.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-account',
@@ -17,5 +18,6 @@ export class AccountComponent {
   onSetTo(status: string) {
     this.accountsService.updateStatus(this.id, status);
     //this.loggingService.logStatusChange('A server status changed, new status: ' + status);
+    this.accountsService.statusUpdated.emit(status);
   }
 }
